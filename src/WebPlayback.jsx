@@ -101,7 +101,7 @@ function WebPlayback(props) {
                         </div>
                     </div>
                 </div>
-                <Guess name={current_track.name} artist={current_track.artists[0].name} setGuess={setGuess}/>
+                <Guess name={current_track.name} artist={current_track.artists[0].name} setGuess={setGuess} is_guess={is_guess} />
             </>
         );
     }else{
@@ -115,7 +115,10 @@ function WebPlayback(props) {
                             <div className="now-playing__name">{current_track.name}</div>
                             <div className="now-playing__artist">{current_track.artists[0].name}</div>
 
-                            <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
+                            <button className="btn-spotify" onClick={() => {
+                                player.previousTrack();
+                                setGuess(true);
+                            }} >
                                 &lt;&lt;
                             </button>
 
@@ -123,13 +126,16 @@ function WebPlayback(props) {
                                 { is_paused ? "PLAY" : "PAUSE" }
                             </button>
 
-                            <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
+                            <button className="btn-spotify" onClick={() => {
+                                player.nextTrack();
+                                setGuess(true);
+                            }} >
                                 &gt;&gt;
                             </button>
                         </div>
                     </div>
                 </div>
-                <Guess name={current_track.name} artist={current_track.artists[0].name} setGuess={setGuess}/>
+                <Guess name={current_track.name} artist={current_track.artists[0].name} setGuess={setGuess} is_guess={is_guess}/>
             </>
         );
     }

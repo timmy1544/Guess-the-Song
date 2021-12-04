@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import OptionsList from './OptionsList.jsx';
 
-const CONFIG = 'BQAhVvM21ZHeMviecQ11cPeo5pkILdcicDjqJqJ8aES3x5HB3lQOVg_4zJCtZB3A1lMY004Ggl0dn-g63ITpcDHSTmbKjVxssRhXmNRuyt-qB8b5aNvIizxkq6LVI3KYfi4lPxwtnH5-xQXVnbLg3a1CJsrqvnnhtcjF';
+// input parameters =======
+const CONFIG = 'BQDTF3WJ2PuAsrPSE7ZosylTiWutrjHA8fvi1lkPbCBdg5BYf_quHPD60YNdgKTKd1Kvl0lop2RZ97v-EaaiMAJotb5XZMYI0xG70DAkjRueP22HHYLgHYUtQ5yW-aUuX-j-NH6cYEDF8II-ENhxiUt9';
+// ========================
 
 const songListHelper = function (results) {
   let list = [];
@@ -48,30 +50,47 @@ class Guess extends React.Component {
 
   componentDidUpdate() {
     if (this.props.name !== this.state.name) {
+      this.setState({
+        name:this.props.name
+      })
       this.getNewOptions();
     }
   }
 
   getNewOptions () {
-    axios.get('https://api.spotify.com/v1/playlists/37i9dQZF1DXc6IFF23C9jj',{
+    axios.get('https://api.spotify.com/v1/me/player', {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${CONFIG}`,
       }
     })
-      .then(results => {
-        let optionsList = songListHelper(results);
-        optionsList = optionsHelper(optionsList,{
-          name:this.props.name,
-          artist:this.props.artist
+      .then(data => {
+        const playListUrl = data.data.context.href;
+        return playListUrl;
+      })
+      .then(url => {
+        axios.get(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${CONFIG}`,
+          }
         })
-        this.setState({
-          options:optionsList,
-          name:this.props.name
-        })
+          .then(results => {
+            let optionsList = songListHelper(results);
+            optionsList = optionsHelper(optionsList,{
+              name:this.props.name,
+              artist:this.props.artist
+            })
+            this.setState({
+              options:optionsList,
+            })
+          })
+          .catch(err => {
+            console.error('failed to retrieve playlist data');
+          })
       })
       .catch(err => {
-        console.error('failed to retrieve playlist data');
+        console.error('failed to retrieve current laylist url')
       })
   }
 
@@ -84,7 +103,7 @@ class Guess extends React.Component {
     }
 
     return (
-      <OptionsList options={this.state.options[0]} answer={this.state.options[1]} setGuess={this.props.setGuess}/>
+      <OptionsList options={this.state.options[0]} answer={this.state.options[1]} setGuess={this.props.setGuess} is_guess={this.props.is_guess}/>
     );
   }
 }

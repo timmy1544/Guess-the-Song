@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,9 +8,9 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
 const ErrorRadios = (props)=>{
-  const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState('Choose wisely');
+  const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('Choose wisely');
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -18,19 +18,27 @@ const ErrorRadios = (props)=>{
     setError(false);
   };
 
+  useEffect(()=>{
+    if(props.is_guess === true) {
+      setHelperText('Choose wisely');
+    }
+  })
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.setGuess(false);
 
     if (value === props.answer.toString()) {
       setHelperText('You got it!');
       setError(false);
-      props.setGuess(false);
-    } else if (value === 'worst') {
-      setHelperText('Sorry, wrong answer!');
-      setError(true);
-    } else {
+      setValue('');
+    } else if (value === '') {
       setHelperText('Please select an option.');
       setError(true);
+    } else {
+      setHelperText('Sorry, wrong answer!');
+      setError(true);
+      setValue('');
     }
   };
 
@@ -48,7 +56,7 @@ const ErrorRadios = (props)=>{
         error={error}
         variant="standard"
       >
-        <FormLabel component="legend" id="gameTitle">The name of song is ....</FormLabel>
+        <FormLabel component="legend" id="gameTitle">The name of this song is ....</FormLabel>
         <RadioGroup
           aria-label="quiz"
           name="quiz"
