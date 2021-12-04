@@ -24,6 +24,7 @@ const ErrorRadios = (props)=>{
     if (value === props.answer.toString()) {
       setHelperText('You got it!');
       setError(false);
+      props.setGuess(false);
     } else if (value === 'worst') {
       setHelperText('Sorry, wrong answer!');
       setError(true);

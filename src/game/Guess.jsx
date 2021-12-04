@@ -69,7 +69,6 @@ class Guess extends React.Component {
           options:optionsList,
           name:this.props.name
         })
-        console.log('retrieve playlist data', optionsList);
       })
       .catch(err => {
         console.error('failed to retrieve playlist data');
@@ -85,7 +84,7 @@ class Guess extends React.Component {
     }
 
     return (
-      <OptionsList options={this.state.options[0]} answer={this.state.options[1]} />
+      <OptionsList options={this.state.options[0]} answer={this.state.options[1]} setGuess={this.props.setGuess}/>
     );
   }
 }
