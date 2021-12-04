@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Guess from './game/Guess.jsx';
+
 
 const track = {
     name: "",
@@ -50,12 +52,11 @@ function WebPlayback(props) {
                 if (!state) {
                     return;
                 }
-
                 setTrack(state.track_window.current_track);
                 setPaused(state.paused);
 
-                player.getCurrentState().then( state => { 
-                    (!state)? setActive(false) : setActive(true) 
+                player.getCurrentState().then( state => {
+                    (!state)? setActive(false) : setActive(true)
                 });
 
             }));
@@ -65,7 +66,7 @@ function WebPlayback(props) {
         };
     }, []);
 
-    if (!is_active) { 
+    if (!is_active) {
         return (
             <>
                 <div className="container">
@@ -79,7 +80,6 @@ function WebPlayback(props) {
             <>
                 <div className="container">
                     <div className="main-wrapper">
-
                         <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
 
                         <div className="now-playing__side">
@@ -100,6 +100,7 @@ function WebPlayback(props) {
                         </div>
                     </div>
                 </div>
+                <Guess name={current_track.name} artist={current_track.artists[0].name}/>
             </>
         );
     }
