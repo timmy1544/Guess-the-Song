@@ -114,4 +114,27 @@ body {
   top:1px;
 }
 
+#gameTitle {
+  color: #1DB954;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#gameHelperText {
+  color: #1DB954;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#checkanswerBtn {
+  color:#1DB954;
+  background-color: black; /* Green */
+  border: 2px solid #1DB954; /* Green */
+  font-weight: bold;
+}
+
+#radiogroup {
+}
+
+
 img { background: transparent; }
