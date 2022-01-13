@@ -1,9 +1,11 @@
-# Web Playback SDK Javascript Tutorial
+# Guess the Song!
+This is a browser-based game integrated with **Spotify Web Playback SDK**. The game will start from playing a random song from the selected playlist while the song's title, artist, album are covered. The user has to choose the correct name of the song from the list. 
 
-This repository contains the source code for the [Web Playback SDK Guide](https://developer.spotify.com/documentation/web-playback-sdk/guide/).
 
-## Using your own credentials
 
+## How to start the game?
+
+### Step 1. Using your own credentials
 You will need to register your app and get your own credentials from the
 [Spotify for Developers Dashboard](https://developer.spotify.com/dashboard/)
 
@@ -20,8 +22,9 @@ SPOTIFY_CLIENT_ID='my_client_id'
 SPOTIFY_CLIENT_SECRET='my_client_secret'
 ```
 
-## Installation
 
+
+### Step 2. Installation
 These examples run on Node.js. On its
 [website](http://www.nodejs.org/download/) you can find instructions on how to
 install it.
@@ -32,7 +35,9 @@ Once installed, clone the repository and install its dependencies running:
 npm install
 ```
 
-## Running the example
+
+
+### Step 3. Running the example
 
 Start both client and server with the following command:
 
@@ -42,20 +47,14 @@ npm run dev
 
 The React application will start on `http://localhost:3000`
 
-## Resources
 
-- Follow [@SpotifyPlatform](https://twitter.com/SpotifyPlatform) on Twitter for Spotify for Developers updates.
-- Join the [Spotify for Developers Community Forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
 
-## Code of Conduct
+### Step 4. Connect to your spotify
+After the user login, the brower will fetch the playlist data that is currently played in the Spotify player. User may change the playlist in the middle of the game and the brower will be updated dynamically. 
 
-This project adheres to the [Open Source Code of
-Conduct](https://github.com/spotify/code-of-conduct/blob/master/code-of-conduct.md).
-By participating, you are expected to honor this code.
 
-## License
 
-Copyright 2021 Spotify AB.
+## Web Playback SDK Javascript Tutorial
+This application is built based on the source code from: [Spotify Web Playback SDK example](https://github.com/spotify/spotify-web-playback-sdk-example)
 
-Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
-
+To check guide and more information: [Web Playback SDK Guide](https://developer.spotify.com/documentation/web-playback-sdk/guide/).
