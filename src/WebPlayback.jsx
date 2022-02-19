@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Guess from './game/Guess.jsx';
 
-
 const track = {
     name: "",
     album: {

@@ -1,10 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import OptionsList from './OptionsList.jsx';
-
-// input parameters =======
-const CONFIG = 'BQCHTtWxMmSu140O8AUQys6EwFSzUPBQXnSzxFhQI4h3CqhTm0ghQx2XOw2NpKuM2MhaeQnfmpO9WpM_V60uGzkgIbn3KMMqKG7ZC3V-171RM3zX4B6Vc9pmKHdyFZTZLkw2mrbqvjeCGA8umyuAdRIS';
-// ========================
+import CONFIG from '../config.js';
 
 const songListHelper = function (results) {
   let list = [];
@@ -39,13 +36,13 @@ class Guess extends React.Component {
     super(props)
     this.state = {
       options:[],
-      name:''
+      name:'',
     }
     this.getNewOptions = this.getNewOptions.bind(this);
   }
 
   componentDidMount() {
-    this.getNewOptions();
+      this.getNewOptions();
   }
 
   componentDidUpdate() {
