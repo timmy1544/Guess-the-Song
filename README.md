@@ -1,5 +1,5 @@
 # Guess the Song!
-This is a browser-based game integrated with **Spotify Web Playback SDK**. The game will start from playing a random song from the selected playlist while the song's title, artist, album are covered. The user has to choose the correct name of the song from the list. 
+This is a browser-based game integrated with **Spotify Web Playback SDK**. The game will start from playing a random song from the selected playlist while the song's title, artist, album are covered. The user has to choose the correct name of the song from the list.
 
 
 
@@ -22,6 +22,8 @@ SPOTIFY_CLIENT_ID='my_client_id'
 SPOTIFY_CLIENT_SECRET='my_client_secret'
 ```
 
+Second, please rename the file `config.example.js` to `config.js`, and add the Oauth token from website below:
+[Get Oauth Token](https://developer.spotify.com/console/get-user-player/?market=&additional_types=)
 
 
 ### Step 2. Installation
@@ -50,7 +52,7 @@ The React application will start on `http://localhost:3000`
 
 
 ### Step 4. Connect to your spotify
-After the user login, the brower will fetch the playlist data that is currently played in the Spotify player. User may change the playlist in the middle of the game and the brower will be updated dynamically. 
+After the user login, the brower will fetch the playlist data that is currently played in the Spotify player. User may change the playlist in the middle of the game and the brower will be updated dynamically.
 
 
 
